@@ -3,11 +3,23 @@ const { toXML } = require('jstoxml');
 
 import HttpError from '../utils/HttpError';
 import { BlingRequest, BlingReturn } from '../interfaces/Bling';
+import { Deal } from "../interfaces/PipedriveInterface";
 
 class BlingService {
   private apiBling = axios.create({
     baseURL: process.env.BLING_URL
   });
+
+  castOrder(deal: Deal){
+    this.createRequest({
+      clientName: deal.person_name,
+      code: deal.id,
+      description: deal.title,
+      value: deal.value
+    }).catch(error => {
+      console.log(error);
+    });
+  }
 
   async createRequest(request: BlingRequest) {
     const xml = this.getBlingRequestBody(request);

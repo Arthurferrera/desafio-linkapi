@@ -1,6 +1,6 @@
 import { Document, model, Schema } from "mongoose";
 
-interface OrderDocument extends Document {
+interface IOrder extends Document {
     _id: string
     name?: string
     clientName?: string
@@ -23,6 +23,6 @@ const orderSchema = new Schema({
     currency: String
 });
 
-const Order = model<OrderDocument>("Order", orderSchema);
+const Order = model<IOrder>("Order", orderSchema);
 
-export { Order, OrderDocument }
+export { Order, IOrder }
