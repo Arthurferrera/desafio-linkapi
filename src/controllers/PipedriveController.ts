@@ -19,6 +19,10 @@ interface deals {
 class PipedriveController {
 
   async index(req: Request, res: Response) {
+    console.log(`${process.env.MONGO_CONNECTION}`);
+    
+    let erro = false;
+    let erroMsg;
 
     const {data, status} = await PipedriveService.get<PipedriveApiReturn>('deals', {
       params: {
@@ -48,12 +52,17 @@ class PipedriveController {
         description: deal.title,
         value: deal.value
       }).catch(error => {
-        return res.status(100).json({error: error});
+        erro = true;
+        erroMsg = error
       });
       // OrderService.createOrder(deal).catch
     })
-   
-   return res.status(201).json({Message: "Pedidos inseridos na plataforma Bling"});
+    
+    if (erro) {
+      return res.status(100).json({error: erroMsg});
+    } else {
+      return res.status(201).json({Message: "Pedidos inseridos na plataforma Bling", erro});
+    }
   }
 }
 
