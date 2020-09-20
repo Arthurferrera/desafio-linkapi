@@ -24,8 +24,6 @@ class BlingService {
         }
       );
       
-      // console.log(status);
-      
     if (data.retorno.erros && data.retorno.erros.length) {
       throw new HttpError(400, data.retorno.erros[0].erro.msg);
     }

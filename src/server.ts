@@ -8,7 +8,10 @@ mongoose.connect(`${process.env.MONGO_CONNECTION}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 },(msg) => {
-  console.log('Conexão', msg);
+  if (msg) {
+    console.error('Error connection', msg);  
+  }
+  
 });
 
 const app = express();

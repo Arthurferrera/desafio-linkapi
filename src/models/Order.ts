@@ -1,10 +1,28 @@
-import { Schema } from 'mongoose';
+import { Document, model, Schema } from "mongoose";
 
-const OrderSchema = new Schema({
-  title: { type: String, required: true },
-  status: { type: String, required: true },
-  value: { type: Number, required: true },
-  won_time: { type: Date, required: true }
+interface OrderDocument extends Document {
+    _id: string
+    name?: string
+    clientName?: string
+    date: Date
+    value: number
+    currency?: string
+}
+
+const orderSchema = new Schema({
+    name: String,
+    clientName:String,
+    date: {
+        type: Date,
+        required: true
+    },
+    value: {
+        type: Number,
+        required: true
+    },
+    currency: String
 });
 
-export default OrderSchema;
+const Order = model<OrderDocument>("Order", orderSchema);
+
+export { Order, OrderDocument }

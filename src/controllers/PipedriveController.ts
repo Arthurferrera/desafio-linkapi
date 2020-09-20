@@ -2,25 +2,14 @@ import { Request, Response } from 'express';
 
 import PipedriveService from '../services/PipedriveService';
 import blingService from "../services/BlingService";
-// import OrderService from "../services/OrderService";
-import { PipedriveApiReturn, Deal } from '../interfaces/PipedriveInterface'
 
-import Order from '../models/Order';
+import { Order } from '../models/Order';
 import HttpError from '../utils/HttpError';
-
-interface deals {
-  id: number,
-  title: String,
-  status: String,
-  value: String,
-  won_time: Date
-}
+import { PipedriveApiReturn, Deal } from '../interfaces/PipedriveInterface'
 
 class PipedriveController {
 
   async index(req: Request, res: Response) {
-    console.log(`${process.env.MONGO_CONNECTION}`);
-    
     let erro = false;
     let erroMsg;
 
@@ -55,14 +44,21 @@ class PipedriveController {
         erro = true;
         erroMsg = error
       });
-      // OrderService.createOrder(deal).catch
-    })
-    
-    if (erro) {
-      return res.status(100).json({error: erroMsg});
-    } else {
-      return res.status(201).json({Message: "Pedidos inseridos na plataforma Bling", erro});
-    }
+
+      await new Order({
+        name: deal.title,
+        clientName: deal.person_name,
+        date: deal.update_time,
+        value: deal.value,
+        currency: deal.currency
+      }).save();
+    });
+
+    return res.status(201).json({Message: "Pedidos inseridos na plataforma Bling", erro});
+  }
+
+  async show() {
+    return await Order.find({}).sort({ date: -1 });
   }
 }
 
