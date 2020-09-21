@@ -9,6 +9,19 @@ class PipedriveController {
   // Method that searches for items with the status 'Won' in Pipedrive, 
   // sends them to Bling and saves them in the database
   async index(req: Request, res: Response) {
+    // Token validation, if it is the correct token, 
+    // the integration process is allowed
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+      return res.status(401).json({ error: 'Token not provided' });
+    }
+
+    const [, token] = authHeader.split(' ');
+    if (token !== process.env.TOKEN_API) {
+      return res.status(401).json({ error: 'Token invalid' });
+    }
+
     const deals = await PipedriveService.getWonsPipeDrive();
 
     // If there are no orders marked as won, returns status 204
