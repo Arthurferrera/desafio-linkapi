@@ -1,3 +1,4 @@
+// Bling model interfaces
 export interface Deal {
   id: number,
   title: string,

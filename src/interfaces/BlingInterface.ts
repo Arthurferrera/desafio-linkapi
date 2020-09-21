@@ -1,3 +1,4 @@
+// Bling model interfaces
 export interface BlingRequest {
   clientName: string,
   code: number,

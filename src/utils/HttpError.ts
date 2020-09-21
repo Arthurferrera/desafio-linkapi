@@ -1,3 +1,5 @@
+// Class used to return errors to the client
+
 export default class HttpError extends Error {
   public statusCode: number;
 

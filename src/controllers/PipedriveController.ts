@@ -26,7 +26,6 @@ class PipedriveController {
     return res.status(201).json({Message: "Orders placed on the Bling platform"});
   }
 
-
   // Returns all orders entered in Bling
   async show(req: Request, res: Response) {
     const orders = await Order.find();

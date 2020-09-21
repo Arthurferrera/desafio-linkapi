@@ -4,14 +4,14 @@ import mongoose from 'mongoose';
 
 import routes from './routes';
 
+// Connection to the database
 mongoose.connect(`${process.env.MONGO_CONNECTION}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 },(msg) => {
   if (msg) {
     console.error('Error connection', msg);  
-  }
-  
+  }  
 });
 
 const app = express();

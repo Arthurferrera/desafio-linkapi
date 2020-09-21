@@ -2,7 +2,7 @@ import axios from "axios";
 const { toXML } = require('jstoxml');
 
 import HttpError from '../utils/HttpError';
-import { BlingRequest, BlingReturn } from '../interfaces/Bling';
+import { BlingRequest, BlingReturn } from '../interfaces/BlingInterface';
 import { Deal } from "../interfaces/PipedriveInterface";
 
 class BlingService {
@@ -45,7 +45,7 @@ class BlingService {
     // Checking the status returned by the request, 
     // to know if there was an error and to return 
     // feedback to the user
-    if (status < 200 || status > 299) {
+    if (status <= 199 || status >= 300) {
       throw new HttpError(500, "An error ocurred trying to create a order on Bling Api");
     }
   }
