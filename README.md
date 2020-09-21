@@ -5,7 +5,7 @@ Uma API que busca os negócios marcados como 'Ganho' na plataforma Pipedrive, in
 
 ## :rocket: Tecnologias Utilizadas
 Durante o desenvolvimento foi utilizado as seguintes tecnologias
-- Noje.js
+- Node.js
 - Typescript
 - MongoDB
 
