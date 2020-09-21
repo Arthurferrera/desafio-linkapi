@@ -6,6 +6,7 @@ import OrderService from "../services/OrderService";
 import { Order } from '../models/Order';
 
 class PipedriveController {
+  
   async index(req: Request, res: Response) {
     const deals = await PipedriveService.getWonsPipeDrive();
 
@@ -18,6 +19,8 @@ class PipedriveController {
     return res.status(201).json({Message: "Pedidos inseridos na plataforma Bling"});
   }
 
+
+  // Returns all orders entered in Bling
   async show(req: Request, res: Response) {
     const orders = await Order.find();
     return res.json(orders);

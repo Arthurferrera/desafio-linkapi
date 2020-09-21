@@ -17,7 +17,7 @@ class BlingService {
       description: deal.title,
       value: deal.value
     }).catch(error => {
-      console.log(error);
+      // console.log(error);
     });
   }
 
