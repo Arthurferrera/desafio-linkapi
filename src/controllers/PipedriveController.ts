@@ -41,6 +41,19 @@ class PipedriveController {
 
   // Returns all orders entered in Bling
   async show(req: Request, res: Response) {
+    // Token validation, if it is the correct token, 
+    // the integration process is allowed
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+      return res.status(401).json({ error: 'Token not provided' });
+    }
+
+    const [, token] = authHeader.split(' ');
+    if (token !== process.env.TOKEN_API) {
+      return res.status(401).json({ error: 'Token invalid' });
+    }
+    
     const orders = await Order.find();
     return res.json(orders);
   }
