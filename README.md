@@ -36,7 +36,7 @@ Durante o desenvolvimento foi utilizado as seguintes tecnologias
 
 3. Sincronize os dados do Pipedrive utilizando a seguinte rota
 ```sh
-  # Método GET - É necessário enviar um token de autenticação para ser possível executar a integração (Disponível no arquivo .env/.env_example)
+  # Método POST - É necessário enviar um token de autenticação para ser possível executar a integração (Disponível no arquivo .env/.env_example)
   $ http://localhost:3333/integration
 ```
 
