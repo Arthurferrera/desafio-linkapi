@@ -48,5 +48,5 @@ Durante o desenvolvimento foi utilizado as seguintes tecnologias
 
 Como adicionar o token de autenticação - Utilizei o aplicativo [Insomnia](https://insomnia.rest/download/)
   - Na aba de Authorization é necesário selecionar o tipo **Bearer Token** e no campo token colocar a string definida no arquivo .env
-  Exemplo:
-  <img alt="Exemplo token api" src="readme-assets/exemplo_token.png" width="200px">
+  
+    <img alt="Exemplo token api" src="readme-assets/exemplo_token.png" width="650px" height="300px">
