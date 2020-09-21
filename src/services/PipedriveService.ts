@@ -20,6 +20,10 @@ class PipedriveService {
       throw new HttpError(500, 'An error occurred while trying to get wons from the Pipedrive API');
     }
   
+    if (!data.data) {
+      return [];
+    }
+    
     return data.data.map(deal => ({
       id: deal.id,
       title: deal.title,

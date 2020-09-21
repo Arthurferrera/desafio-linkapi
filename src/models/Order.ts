@@ -1,5 +1,6 @@
 import { Document, model, Schema } from "mongoose";
 
+// Order model class
 interface IOrder extends Document {
     _id: string
     name?: string

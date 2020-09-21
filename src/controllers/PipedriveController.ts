@@ -6,17 +6,24 @@ import OrderService from "../services/OrderService";
 import { Order } from '../models/Order';
 
 class PipedriveController {
-  
+  // Method that searches for items with the status 'Won' in Pipedrive, 
+  // sends them to Bling and saves them in the database
   async index(req: Request, res: Response) {
     const deals = await PipedriveService.getWonsPipeDrive();
 
+    // If there are no orders marked as won, returns status 204
+    if (!deals) {
+      return res.status(204);
+    }
+
     deals.forEach(async deal => {
+      // Calling method that organizes the data for the request
       BlingService.castOrder(deal);
-      
+      // Calling method that saves the data in the database
       OrderService.saveOrder(deal);
     });
 
-    return res.status(201).json({Message: "Pedidos inseridos na plataforma Bling"});
+    return res.status(201).json({Message: "Orders placed on the Bling platform"});
   }
 
 
